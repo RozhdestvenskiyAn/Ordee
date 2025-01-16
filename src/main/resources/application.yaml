@@ -1,3 +1,9 @@
 spring:
   application:
     name: ordee
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ordee
+    username: postgres
+    password: OktD2Qle20
+    driver-class-name: org.postgresql.Driver
