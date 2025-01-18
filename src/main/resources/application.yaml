@@ -1,9 +1,14 @@
 spring:
   application:
     name: ordee
-
+  jpa:
+    hibernate:
+      ddl-auto: none
   datasource:
     url: jdbc:postgresql://localhost:5432/ordee
     username: postgres
     password: OktD2Qle20
     driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    enabled: true
