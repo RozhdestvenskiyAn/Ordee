@@ -1,24 +1,20 @@
 package com.rozhdev.ordee.product.controller;
 
 import com.rozhdev.ordee.product.dto.ProductDto;
-import com.rozhdev.ordee.product.entity.Product;
-import com.rozhdev.ordee.product.mapper.ProductMapper;
 import com.rozhdev.ordee.product.service.ProductService;
-import com.rozhdev.ordee.utils.data.generator.ProductGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.rozhdev.ordee.utils.data.generator.ProductGenerator.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static com.rozhdev.ordee.utils.data.generator.ProductGenerator.generateNewProductDto;
+import static com.rozhdev.ordee.utils.data.generator.ProductGenerator.generateProductDto;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ProductControllerTest {

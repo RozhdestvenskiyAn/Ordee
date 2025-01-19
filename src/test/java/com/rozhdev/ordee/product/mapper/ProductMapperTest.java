@@ -2,19 +2,14 @@ package com.rozhdev.ordee.product.mapper;
 
 import com.rozhdev.ordee.product.dto.ProductDto;
 import com.rozhdev.ordee.product.entity.Product;
-import com.rozhdev.ordee.product.service.ProductService;
-import com.rozhdev.ordee.utils.data.generator.ProductGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-
-import static com.rozhdev.ordee.utils.data.generator.ProductGenerator.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.rozhdev.ordee.utils.data.generator.ProductGenerator.generateProduct;
+import static com.rozhdev.ordee.utils.data.generator.ProductGenerator.generateProductDto;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 class ProductMapperTest {
