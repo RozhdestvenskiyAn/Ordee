@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0
+      author: Рождественский Андрей
+      changes:
+        - tagDatabase:
+            tag: v1.0
+
+  - include:
+      file: db/changelog/v.1.0/changelog/1.create_table_product.yaml
