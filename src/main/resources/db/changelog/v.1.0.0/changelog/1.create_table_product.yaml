@@ -24,6 +24,10 @@ databaseChangeLog:
                   type: numeric (6,2)
                   remarks: Стоимость
               - column:
+                  name: description
+                  type: text
+                  remarks: Описание
+              - column:
                   name: created_at
                   type: timestamp
                   remarks: Созданно
