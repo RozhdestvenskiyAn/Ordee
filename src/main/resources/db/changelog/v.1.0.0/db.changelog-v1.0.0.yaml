@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0
+      author: Рождественский Андрей
+      changes:
+        - tagDatabase:
+            tag: v1.0
+  - includeAll:
+      path: changelog
+      relativeToChangelogFile: true
+
