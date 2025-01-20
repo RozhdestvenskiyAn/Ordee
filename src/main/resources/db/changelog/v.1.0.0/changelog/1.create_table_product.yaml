@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.create_table_product
+      author: Рождественский Андрей
+      changes:
+        - createTable:
+            tableName: product
+            remarks: Продукты
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  remarks: Идентификатор
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: text
+                  remarks: Назваание продукта
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: numeric (6,2)
+                  remarks: Стоимость
+              - column:
+                  name: description
+                  type: text
+                  remarks: Описание
+              - column:
+                  name: created_at
+                  type: timestamp
+                  remarks: Созданно
+                  defaultValue: ${now}
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  remarks: Отредактированно
