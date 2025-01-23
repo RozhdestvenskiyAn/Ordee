@@ -1,8 +1,8 @@
 package com.rozhdev.ordee.commons.exception.handler;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.rozhdev.ordee.commons.exception.ErrorDetail;
-import com.rozhdev.ordee.commons.exception.ErrorDto;
+import com.rozhdev.ordee.commons.exception.dto.ErrorDetailDto;
+import com.rozhdev.ordee.commons.exception.dto.ErrorDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -20,8 +20,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorDto> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        List<ErrorDetail> errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(fieldError -> new ErrorDetail(fieldError.getField(), fieldError.getDefaultMessage()))
+        List<ErrorDetailDto> errors = ex.getBindingResult().getFieldErrors().stream()
+                .map(fieldError -> new ErrorDetailDto(fieldError.getField(), fieldError.getDefaultMessage()))
                 .toList();
         ErrorDto errorDto = new ErrorDto(INVALID, UNPROCESSABLE_ENTITY.value(), "Invalid input data", errors);
         return ResponseEntity
@@ -31,10 +31,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorDto> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
-        List<ErrorDetail> errors = List.of();
+        List<ErrorDetailDto> errors = List.of();
         if (ex.getCause() instanceof JsonMappingException jsonMappingException) {
             errors = jsonMappingException.getPath().stream()
-                    .map(reference -> new ErrorDetail(reference.getFieldName(), "Unknown field"))
+                    .map(reference -> new ErrorDetailDto(reference.getFieldName(), "Unknown field"))
                     .toList();
         }
         ErrorDto errorDto = new ErrorDto(ERROR, BAD_REQUEST.value(), "Invalid json format", errors);
