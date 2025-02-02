@@ -13,6 +13,7 @@ import java.util.List;
 
 import static com.rozhdev.ordee.commons.exception.Status.ERROR;
 import static com.rozhdev.ordee.commons.exception.Status.INVALID;
+import static java.util.Collections.*;
 import static org.springframework.http.HttpStatus.*;
 
 @RestControllerAdvice
@@ -45,7 +46,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDto> handleGeneralException(Exception ex) {
-        ErrorDto errorDto = new ErrorDto(ERROR, INTERNAL_SERVER_ERROR.value(), "Internal Server Error", null);
+        ErrorDto errorDto = new ErrorDto(ERROR, INTERNAL_SERVER_ERROR.value(), "Internal Server Error", emptyList());
         return ResponseEntity
                 .status(INTERNAL_SERVER_ERROR)
                 .body(errorDto);
