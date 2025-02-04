@@ -23,16 +23,15 @@ public class ObjectMapperConfig {
     public ObjectMapper objectMapper(JavaTimeModule javaTimeModule) {
         return JsonMapper.builder()
                 .serializationInclusion(JsonInclude.Include.NON_NULL)
-                .serializationInclusion(JsonInclude.Include.NON_EMPTY)
                 .enable(SerializationFeature.INDENT_OUTPUT)
                 .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
                 .addModule(javaTimeModule)
                 .build();
     }
 
     @Bean
-    private static JavaTimeModule javaTimeModule() {
+    public JavaTimeModule javaTimeModule() {
         JavaTimeModule javaTimeModule = new JavaTimeModule();
         javaTimeModule.addDeserializer(
                 LocalDateTime.class,
