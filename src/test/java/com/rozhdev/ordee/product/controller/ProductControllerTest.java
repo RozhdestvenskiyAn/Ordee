@@ -44,10 +44,10 @@ class ProductControllerTest {
 
         when(productService.create(any(CreateProductDto.class))).thenReturn(productDto);
 
-        mockMvc.perform(post("/api/v1/product")
+        mockMvc.perform(post("/api/v1/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(createProductDto)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.name").value("Test Product"))
                 .andExpect(jsonPath("$.price").value(50.50))
@@ -61,7 +61,7 @@ class ProductControllerTest {
     void create_shouldReturnErrorDtoInvalidStatus_whenRequestIsNotValid() throws Exception {
         CreateProductDto invalidDto = new CreateProductDto("", BigDecimal.ZERO, "");
 
-        mockMvc.perform(post("/api/v1/product")
+        mockMvc.perform(post("/api/v1/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalidDto)))
                 .andExpect(status().is(422))
